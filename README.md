@@ -36,6 +36,12 @@ A python script was initially used to convert the MIDI song file to timestamped 
 
 Here are some things I learned about embedded development while creating this game:
 
+- deterministic scheduling
+- interrupt-driven input handling
+  - 
+- Embedded graphics pipelines
+- DMA-based peripheral communication
+- Real-time game architecture on resource-constrained hardware
 
 ## Overview of Main Loop and Gameplay Systems
 
