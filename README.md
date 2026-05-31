@@ -7,6 +7,7 @@ Wanted to make my own version of the classic rhythm game Guitar Hero on my STM32
 <img width="288" height="383" alt="PXL_20260531_144818203 MP" src="https://github.com/user-attachments/assets/459cecd3-b3e7-4f41-9ffb-cbd3a40872e2" />
 
 ![Demo GIF](demo.gif)
+<img src="demo.gif" width="300" />
 
 <img width="288" height="383" alt="PXL_20260531_144802651" src="https://github.com/user-attachments/assets/f7392152-ddac-4868-b186-da7925c25c5b" />
 
