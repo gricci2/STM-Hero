@@ -1,7 +1,7 @@
 # STM-Hero
 Wanted to make my own version of the classic rhythm game Guitar Hero on my STM32 Nucleo board (also inspiration from @hoff._world on YouTube). Below are some features, hardware, a brief overview of the code, and things I learned along the way. A python script was initially used to convert the MIDI song file to timestamped note events for gameplay timings. The rest of the project was done in STM32CubeIDE using HAL drivers. Right now the game requires you to start the song file (in .WAV format) on another device at the same time as you start the song on the STM32. My future plans are to add some sort of DAC and output audio directly from the MCU. First, here are a few pictures of the project and videos showing a brief portion of the gameplay:
 
-<img width="288" height="383" alt="PXL_20260531_144535761" src="https://github.com/user-attachments/assets/79ac0094-9254-43d3-9005-47d812a2ec0a" />
+<img width="288" height="383" alt="PXL_20260531_144535761" src="https://github.com/user-attachments/assets/21dc7d72-278e-407d-abce-9d005840b9f2" />
 <img width="288" height="383" alt="PXL_20260531_144605324" src="https://github.com/user-attachments/assets/a12e2619-1e6e-4222-aeac-593678bc0c99" />
 <img width="288" height="383" alt="PXL_20260531_144614059" src="https://github.com/user-attachments/assets/807b3365-f435-4339-a39e-ef681937673b" />
 <img width="288" height="383" alt="PXL_20260531_144818203 MP" src="https://github.com/user-attachments/assets/459cecd3-b3e7-4f41-9ffb-cbd3a40872e2" />
