@@ -34,12 +34,16 @@ Wanted to make my own version of the classic rhythm game Guitar Hero on my STM32
 
 Here are some things I learned about embedded development while creating this game:
 
-- deterministic scheduling
-- interrupt-driven input handling
-  - 
-- Embedded graphics pipelines
-- DMA-based peripheral communication
-- Real-time game architecture on resource-constrained hardware
+- deterministic scheduling and real time gameplay behavior
+- SyStick and how interrupts affect timing, free running timer to prevent stale counter
+- interrupt-driven input handling, EXTI
+  - ISR should be minimal, non-blocking
+- embedded graphics, framebuffers, rendering
+- DMA peripheral communication
+- embedded C fundamentals of volatile, pointers,
+- constraints on storage sizes
+  - how memory works, flash vs RAM, what goes where including consts, globals, locals
+-
 
 ## Overview of Main Loop and Gameplay Systems
 
