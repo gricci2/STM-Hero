@@ -1,9 +1,11 @@
 # STM-Hero
-The classic rhythm game Guitar Hero made with an STM32 Nucleo board.
+The classic rhythm game Guitar Hero made with an STM32 Nucleo board. 
+
+A python script was initially used to convert the MIDI song file to timestamped note events for gameplay timings.
 
 ## Features
 - OLED menu with song selection and status display (I2C)
-- -time rhythm gameplay
+- time rhythm gameplay
 - song notes spawned from MIDI file timing
 - 4-lane note system on daisy-chained LED matrixes (SPI)
 - timestamped input processing driven by interrupt system
@@ -37,15 +39,98 @@ Here are some things I learned about embedded development while creating this ga
 
 ## Overview of Main Loop and Gameplay Systems
 
-Here is the main loop:
+### Here is the main loop:
 
-> while (1) { 
-> uint32_t now = micros(); 
-> uint32_t song_time = now - song_start_time; 
-> GameUpdate(song_time); 
-> GameRender(song_time); 
-> ProcessInputs(song_time); 
-> LED_Build_Frame(); 
-> }
-    
-  
+```c
+while (1) {
+    uint32_t now = micros();
+    uint32_t song_time = now - song_start_time;
+
+    GameUpdate(song_time);
+    GameRender(song_time);
+    ProcessInputs(song_time);
+
+    LED_Build_Frame();
+}
+```
+
+``` micros() ``` returns the current value of TIM2 in microseconds and is used by main loop to update current song time.
+
+``` GameUpdate(song_time) ``` checks the current game state, pdates active song notes based on current song time, and renders the OLED menu.
+
+``` GameRender(song_time) ``` updates the LED framebuffer based on the active notes array.
+
+``` ProcessInputs(song_time) ``` checks timestamped inputs created from ISRs, judges the accuracy of input "hits" and updates the total game scores.
+
+``` LED_Build_Frame() ``` uses the LED framebuffer to prepare a memory frame and transmit frame used to send to the LED matrices.
+
+### Here is the Game State System:
+
+```c
+typedef enum
+{
+  GAME_STATE_MENU,
+  GAME_STATE_RUNNING,
+  GAME_STATE_RESULTS
+} GameState;
+```
+
+The current state of the game is used to control when the song starts, gameplay, and proper menu screens for the OLED.
+
+### Song Format
+
+Songs are represented as time stamped note events. Here is what each note looks like:
+
+```c
+typedef struct
+{
+  uint32_t time;
+  uint8_t lanes;
+} Note;
+```
+
+Here is an example of a song as an array of Notes:
+
+```c
+const Note song_Tetris[] = {
+		{5000000, 0x40},
+		{5250000, 0x10},
+		{5500000, 0x20},
+		{5750000, 0x20},
+		{6000000, 0x40},
+		{6250000, 0x10},
+};
+```
+
+Each bit in ``` lanes ``` corresponds to one of the 8 columns of the LED matrices (4 playable lanes each 2 columns wide).
+
+### Active Note System
+
+Runtime note objects are stored separately from song data:
+
+```c
+typedef struct {
+	uint32_t hit_time;
+	uint8_t lane;
+	uint8_t active;
+	uint8_t hit;
+} ActiveNote;
+```
+
+The active_notes array tracks spawned notes from the song data, handles note expiration, and supports hit detection from interrupt driven inputs.
+
+### Input System
+
+Inputs are timestamped when they occur and stored in a ring buffer.
+
+``` PushInputEvent(lane, time) ``` is used inside the ISR to timestamp the lane being hit. An InputEvent is pushed into the input_queue ring buffer.
+
+```c
+typedef struct
+{
+  uint8_t lane;
+  uint32_t timestamp;
+} InputEvent;
+```
+
+``` ProcessInput() ``` is then used to traverse the ring buffer (tail catching up to head) and judge each lane hit to add to total scores.
