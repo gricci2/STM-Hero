@@ -5,7 +5,7 @@ Wanted to make my own version of the classic rhythm game Guitar Hero on my STM32
 - OLED menu with song selection and status display (I2C)
 - time rhythm gameplay
 - song notes spawned from MIDI file timing
-- 4-lane note system on daisy-chained LED matrixes (SPI)
+- 4-lane note system on daisy-chained LED matrices (SPI)
 - timestamped input processing driven by interrupt system
 - non-blocking updates on peripherals
 
