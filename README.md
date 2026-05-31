@@ -42,10 +42,9 @@ Here are some things I learned about embedded development while creating this ga
 - SPI
 - UART + debugging
 - DMA peripheral communication
-- embedded C fundamentals of volatile, pointers,
+- embedded C fundamentals of volatile, pointers, arrays, buffers, structs, bit manipulation
 - constraints on storage sizes
   - how memory works, flash vs RAM, what goes where including consts, globals, locals
--
 
 ## Overview of Main Loop and Gameplay Systems
 
