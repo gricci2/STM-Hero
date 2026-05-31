@@ -16,12 +16,11 @@ Wanted to make my own version of the classic rhythm game Guitar Hero on my STM32
     - SPI interface
     - software framebuffer
     - real time gameplay rendering
-  - OLED
-    - SSD1306 OLED display
+  - SSD1306 OLED display
     - I2C interface
     - menu system with gameplay states
 - Inputs
-  - Enter button and 4 note buttons
+  - 1 enter button and 4 note buttons
   - EXTI interrupt driven
   - timestamped event queue
 - Timing
