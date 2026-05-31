@@ -38,6 +38,9 @@ Here are some things I learned about embedded development while creating this ga
 - interrupt-driven input handling, EXTI
   - ISR should be minimal, non-blocking
 - embedded graphics, framebuffers, rendering
+- I2C
+- SPI
+- UART + debugging
 - DMA peripheral communication
 - embedded C fundamentals of volatile, pointers,
 - constraints on storage sizes
