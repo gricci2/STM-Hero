@@ -60,7 +60,7 @@ while (1) {
 
 ``` micros() ``` returns the current value of TIM2 in microseconds and is used by main loop to update current song time.
 
-``` GameUpdate(song_time) ``` checks the current game state, pdates active song notes based on current song time, and renders the OLED menu.
+``` GameUpdate(song_time) ``` checks the current game state, updates active song notes based on current song time, and renders the OLED menu.
 
 ``` GameRender(song_time) ``` updates the LED framebuffer based on the active notes array.
 
